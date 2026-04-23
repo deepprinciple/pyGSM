@@ -195,6 +195,30 @@ class Lot(object):
             doc='xTB solvent'
         )
 
+        opt.add_option(
+            key='gxtb',
+            value=False,
+            required=False,
+            allowed_types=[bool],
+            doc='xTB use --gxtb flag (CLI only)'
+        )
+
+        opt.add_option(
+            key='gbe',
+            value=None,
+            required=False,
+            allowed_types=[str],
+            doc='xTB GBE solvent model (CLI only)'
+        )
+
+        opt.add_option(
+            key='cosmo',
+            value=None,
+            required=False,
+            allowed_types=[str],
+            doc='xTB COSMO solvent model (CLI only)'
+        )
+
         Lot._default_options = opt
         return Lot._default_options.copy()
 
@@ -269,6 +293,9 @@ class Lot(object):
         self.xTB_accuracy = self.options['xTB_accuracy']
         self.xTB_electronic_temperature = self.options['xTB_electronic_temperature']
         self.solvent = self.options['solvent']
+        self.gxtb = self.options['gxtb']
+        self.gbe = self.options['gbe']
+        self.cosmo = self.options['cosmo']
 
         # Bools for running
         self.hasRanForCurrentCoords = False

@@ -49,6 +49,10 @@ class xTB_lot(Lot):
         if self.solvent is not None:
             calc.set_solvent(get_solvent(self.solvent))
 
+        # NOTE: gxtb, gbe, and cosmo are CLI-only options in xtb and are
+        # not supported by the Python API (xtb.interface.Calculator).
+        # To use these options, a subprocess-based xTB wrapper is needed.
+
         calc.set_output('lot_jobs_{}.txt'.format(self.node_id))
         res = calc.singlepoint()  # energy printed is only the electronic part
         calc.release_output()
